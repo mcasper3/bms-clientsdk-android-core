@@ -135,7 +135,7 @@ public class Request extends BaseRequest {
     }
 
     /**
-     * Send this resource request asynchronously, without a request body.
+     * Send this resource request asynchronously, with the given string as the request body.
      *
      * @param context The context that will be passed to authentication listener.
      * @param text The request body text
@@ -147,7 +147,7 @@ public class Request extends BaseRequest {
     }
 
     /**
-     * Send this resource request asynchronously, without a request body.
+     * Send this resource request asynchronously, with the content of the given byte array as the request body.
      *
      * @param context The context that will be passed to authentication listener.
      * @param bytes     The byte array containing the request body
@@ -156,6 +156,18 @@ public class Request extends BaseRequest {
     public void send(Context context, byte[] bytes, ResponseListener listener) {
         this.context = context;
         super.send(bytes, listener);
+    }
+
+    /**
+     * Send this resource request asynchronously, with the given JSON object as the request body.
+     *
+     * @param context The context that will be passed to authentication listener.
+     * @param json The request body JSON
+     * @param listener The listener whose onSuccess or onFailure methods will be called when this request finishes.
+     */
+    public void send(Context context, JSONObject json, ResponseListener listener) {
+        this.context = context;
+        super.send(json, listener);
     }
 
     @Override
